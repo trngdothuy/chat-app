@@ -3,7 +3,9 @@ import { useState } from "react";
 
 function App() {
   const [username, setUsername] = useState("");
-  const [savedUsername, setSavedUsername] = useState("");
+  const [savedUsername, setSavedUsername] = useState(
+    localStorage.getItem("username") || ""
+);
 
   const [messageInput, setMessageInput] = useState("");
 
@@ -23,6 +25,12 @@ function App() {
 
   useEffect(() => {
     fetchMessages();
+
+    const interval = setInterval(() => {
+      fetchMessages();
+    }, 3000);
+
+    return () => clearInterval(interval);
   }, []);
 
   function handleUserNameSubmit(e) {
@@ -30,6 +38,7 @@ function App() {
 
     if (!username.trim()) return;
 
+    localStorage.setItem("username", username);
     setSavedUsername(username);
   }
 
@@ -42,6 +51,7 @@ function App() {
       userName: savedUsername,
       text: messageInput,
     };
+    console.log(newMessage)
 
     try {
       await fetch("http://localhost:3000/messages", {
