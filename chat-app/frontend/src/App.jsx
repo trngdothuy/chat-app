@@ -47,8 +47,11 @@ function App() {
 
     if (!messageInput.trim()) return;
 
+    console.log(savedUsername);
+    console.log(messageInput);
+
     const newMessage = {
-      userName: savedUsername,
+      username: savedUsername,
       text: messageInput,
     };
     console.log(newMessage)
