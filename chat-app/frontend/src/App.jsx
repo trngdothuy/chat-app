@@ -38,6 +38,7 @@ function App() {
     setMessages([...messages, newMessage]);
 
     setMessageInput("");
+    console.log(messages)
   }
 
   if (!savedUsername) {
