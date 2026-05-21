@@ -1,34 +1,173 @@
-# Write and Deploy Chat Application Frontend and Backend
+# Chat Application
 
-### Link to the coursework
+A full-stack chat application built with React and Express.
 
-https://sdc.codeyourfuture.io/decomposition/sprints/2/prep/
+Users can:
+- join the chat with a username
+- send messages
+- see messages from all users
+- receive new messages automatically
+- see timestamps for messages
 
-You must complete and deploy a chat application. You have two weeks to complete this.
+---
 
-It must support at least the following requirements:
-* As a user, I can send add a message to the chat.
-* As a user, when I open the chat I see the messages that have been sent by any user.
-* As a user, when someone sends a message, it gets added to what I see.
+# Technologies Used
 
-It must also support at least one additional feature.
+## Frontend
+- React
+- Vite
+- CSS
+- Fetch API
 
-### Why are we doing this?
+## Backend
+- Node.js
+- Express
+- CORS
 
-Learning about deploying multiple pieces of software that interact.
+---
 
-Designing and implementing working software that users can use.
+# Features
 
-Exploring and understanding different ways of sending information between a client and server.
+- Username selection
+- Send messages
+- Display all chat messages
+- Automatic message updates with polling
+- Additional Feature: Timestamps on messages
 
-### Maximum time in hours
+---
 
-16
+# Project Structure
 
-### How to submit
+```txt
+chat-app/
+├── frontend/
+└── backend/
+```
 
-* Fork the Module-Decomposition repository
-* Develop and deploy your chat app
-* Create a pull request back into the original Module-Decomposition repo, including:
-    * A link to the deployed frontend on the CYF hosting environment
-    * A link to the deployed backend on the CYF hosting environment
+---
+
+# Setup Instructions
+
+## 1. Clone the repository
+
+```bash
+git clone https://github.com/trngdothuy/chat-app
+```
+
+---
+
+## 2. Install frontend dependencies
+
+```bash
+cd frontend
+npm install
+```
+
+---
+
+## 3. Install backend dependencies
+
+Open a second terminal:
+
+```bash
+cd backend
+npm install
+```
+
+---
+
+# Running the Application
+
+## Start the backend server
+
+Inside `backend/`:
+
+```bash
+node server.js
+```
+
+The backend runs on:
+
+```txt
+http://localhost:3000
+```
+
+---
+
+## Start the frontend
+
+Inside `frontend/`:
+
+```bash
+npm run dev
+```
+
+The frontend runs on:
+
+```txt
+http://localhost:5173
+```
+
+---
+
+# API Endpoints
+
+## GET /messages
+
+Returns all chat messages.
+
+Example response:
+
+```json
+[
+  {
+    "id": 1,
+    "username": "System",
+    "text": "Welcome!",
+    "createdAt": "2026-05-21T20:00:00.000Z"
+  }
+]
+```
+
+---
+
+## POST /messages
+
+Creates a new message.
+
+Example request body:
+
+```json
+{
+  "username": "ABC",
+  "text": "Hello everyone"
+}
+```
+
+---
+
+# Deployment
+
+## Frontend Deployment
+Deploy using:
+- Coolify
+
+## Backend Deployment
+Deploy using:
+- Coolify
+
+---
+
+# Future Improvements
+
+- Authentication
+- Database storage
+- WebSockets for real-time updates
+- Message editing/deleting
+- Improved styling
+
+---
+
+# Author
+
+**Trang Do Thuy** - Created as part of the CodeYourFuture coursework.
