@@ -170,4 +170,4 @@ Deploy using:
 
 # Author
 
-**Trang Do Thuy** - Created as part of the CodeYourFuture coursework.
+**Trang Do Thuy** - Created as part of Migracode coursework.
