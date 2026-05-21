@@ -95,6 +95,7 @@ function App() {
       <p>Welcome {savedUsername}!</p>
 
       <div className="message-container">
+        {messages.length === 0 && <p>No massages yet</p>}
         {messages.map((message) => (
           <div key={message.id} className="message">
             <strong>{message.username}</strong>
