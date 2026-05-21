@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useState } from "react";
 
 function App() {
@@ -6,14 +7,23 @@ function App() {
 
   const [messageInput, setMessageInput] = useState("");
 
-  const [messages, setMessages] = useState([
-    {
-      id: 1,
-      username: "System",
-      text: "Welcome to the chat",
-      createdAt: new Date().toLocaleTimeString(),
-    },
-  ]);
+  const [messages, setMessages] = useState([]);
+
+  async function fetchMessages() {
+    try {
+      const response = await fetch("http://localhost:3000/messages");
+
+      const data = await response.json();
+
+      setMessages(data);
+    } catch (error) {
+      console.error("Error fetching messages:", error);
+    }
+  }
+
+  useEffect(() => {
+    fetchMessages();
+  }, []);
 
   function handleUserNameSubmit(e) {
     e.preventDefault();
@@ -23,22 +33,31 @@ function App() {
     setSavedUsername(username);
   }
 
-  function handleMessageSubmit(e) {
+  async function handleMessageSubmit(e) {
     e.preventDefault();
 
     if (!messageInput.trim()) return;
 
     const newMessage = {
-      id: Date.now(),
       userName: savedUsername,
       text: messageInput,
-      createdAt: new Date().toLocaleTimeString(),
     };
 
-    setMessages([...messages, newMessage]);
+    try {
+      await fetch("http://localhost:3000/messages", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newMessage),
+      });
 
-    setMessageInput("");
-    console.log(messages)
+      setMessageInput("");
+
+      fetchMessages();
+    } catch (error) {
+      console.error("Error sending message:", error);
+    }
   }
 
   if (!savedUsername) {
@@ -72,7 +91,7 @@ function App() {
 
             <p>{message.text}</p>
 
-            <small>{message.createdAt}</small>
+            <small>{new Date(message.createdAt).toLocaleTimeString()}</small>
           </div>
         ))}
       </div>
