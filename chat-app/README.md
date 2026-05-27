@@ -9,6 +9,8 @@ Users can:
 - receive new messages automatically
 - see timestamps for messages
 
+Ticket: https://github.com/trngdothuy/My-Coursework-Planner/issues/163
+
 ---
 
 # Technologies Used
